@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  mjpg:
+    build:
+      context: ./mjpg
+    devices:
+      - "/dev/video0:/dev/video0"
+    ports:
+      - 8080:8080
+    entrypoint: "./mjpg_streamer -i \"input_uvc.so -d /dev/video0\" -o \"output_http.so\""
+  octoprint:
+    build:
+      context: ./octoprint
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUBS0"
+    ports:
+      - 80:5000
+    entrypoint: "octoprint start --iknowwhatimdoing"

@@ -1,0 +1,5 @@
+iface wlx74da388fa276 inet dhcp
+  wpa-essid $WPA2_SSID
+  wpa-psk $WPA2_PASSWORD
+  pre-up wpa_supplicant -Bw -Dwext -i$IFACE -c/etc/wpa_supplicant.conf
+  post-down killall -q wpa_supplicant
